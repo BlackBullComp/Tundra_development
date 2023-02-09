@@ -7,6 +7,9 @@ TagManager:
   - CinemachineTarget
   - axe
   - Log
+  - Camera
+  - water
+  - Tree
   layers:
   - Default
   - TransparentFX
@@ -14,8 +17,8 @@ TagManager:
   - Ground
   - Water
   - UI
-  - 
-  - 
+  - Camera
+  - Tree
   - 
   - 
   - 
