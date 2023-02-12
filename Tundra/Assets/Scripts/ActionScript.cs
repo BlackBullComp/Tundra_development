@@ -17,12 +17,9 @@ public class ActionScript : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    
 
-    private void FixedUpdate()
+    void Update()
     {
         if (Input.GetMouseButtonDown(0) && triggered == true)
         {

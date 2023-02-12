@@ -43,6 +43,9 @@ public class ThirstyBar : MonoBehaviour
         if (Input.GetKey(KeyCode.LeftShift))
         { thirsty -= 3f * Time.deltaTime; }
 
-
+        if(thirsty <= 0)
+        {
+            thirsty = 0f;
+        }
     }
 }
