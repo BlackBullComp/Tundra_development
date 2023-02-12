@@ -7,7 +7,8 @@ public class hungrybarscript : MonoBehaviour
     
     public Slider HungerSlider;
 
-  
+
+    public GameObject Player;
 
     public float Hunger;
     float maxHunger = 100f;
@@ -19,7 +20,7 @@ public class hungrybarscript : MonoBehaviour
     
     void Update()
     {
-        Debug.Log(Hunger);
+        
         //deðerin oyun ýcýnde degýsecegý ýcýn buraya yazýyoruz.
         HungerSlider.value = Hunger;
         Hunger -= 1f* Time.deltaTime;
@@ -39,6 +40,12 @@ public class hungrybarscript : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space))
         { Hunger -= 2.5f; }
+
+        if (Hunger <= 0)
+        {
+            Hunger = 0f;
+            Player.GetComponent<ActionScript>().Health -= 1*Time.deltaTime;
+        }
 
     }
 }

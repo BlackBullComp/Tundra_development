@@ -8,44 +8,53 @@ public class ThirstyBar : MonoBehaviour
 {
     public Slider thirstybar;
     public float thirsty;
+    public float minusthirstybarValue;
+    public float minustime;
+    
     float maxThirsty = 100f;
 
     
     void Start()
     {
         thirsty = maxThirsty;
+        minusthirstybarValue = 1f;
+        minustime = 1f;
     }
 
     
     void Update()
     {
-        Debug.Log(thirsty);
+        
        thirstybar.value = thirsty;
-        thirsty= 1f * Time.deltaTime;
+        thirsty -= minusthirstybarValue * Time.deltaTime * minustime;
+
+        if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.Space))
+        {
+            minustime = minustime * 2;
+        }
+        else
+        {
+            minustime = 1f;
+        }
+        
+        if (Input.GetKeyDown(KeyCode.LeftShift) && Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.Space))
+        {
+            minustime = minustime * 2.5f;
+
+        }
+        else
+        {
+            minustime = 1f;
 
 
-        if (Input.GetKey(KeyCode.W))
-        { thirsty -= 2f * Time.deltaTime; }
-
-        if (Input.GetKey(KeyCode.A))
-        { thirsty -= 2f * Time.deltaTime; }
-
-        if (Input.GetKey(KeyCode.S))
-        { thirsty -= 2f * Time.deltaTime; }
-
-        if (Input.GetKey(KeyCode.D))
-        { thirsty -= 2f * Time.deltaTime; }
+        }
 
 
-        if(Input.GetKeyDown(KeyCode.Space))
-        { thirsty -= 2.5f; }
-
-        if (Input.GetKey(KeyCode.LeftShift))
-        { thirsty -= 3f * Time.deltaTime; }
-
-        if(thirsty <= 0)
+        if (thirsty <= 0)
         {
             thirsty = 0f;
+            
+
         }
     }
 }

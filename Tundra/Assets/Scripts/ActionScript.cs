@@ -1,19 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ActionScript : MonoBehaviour
 {
     // Start is called before the first frame update
-
+    public Slider HealthBar;
     public bool attack;
     public bool triggered;
     public int collectedwoods;
     public GameObject log;
+    public GameObject Barscanvas;
+    float hunger;
+    float thirstyplayer;
+    
      GameObject collidedobject;
+    public float Health = 100;
     void Start()
     {
-        
+        hunger = Barscanvas.GetComponent<hungrybarscript>().Hunger;
+        thirstyplayer = Barscanvas.GetComponent<ThirstyBar>().thirsty;
     }
 
     // Update is called once per frame
@@ -21,6 +28,8 @@ public class ActionScript : MonoBehaviour
 
     void Update()
     {
+        HealthBar.value = Health;
+        
         if (Input.GetMouseButtonDown(0) && triggered == true)
         {
 
@@ -28,13 +37,17 @@ public class ActionScript : MonoBehaviour
             
             
         }
-        else
-        {
+       
 
-            collidedobject.GetComponent<treehealt>().tree_healt -= 0;
+        if (hunger <= 0 && thirstyplayer <= 0)
+        {
+           Die();
         }
 
-
+        if (Health == 0)
+        {
+            Die();
+        }
 
     }
 
@@ -80,5 +93,10 @@ public class ActionScript : MonoBehaviour
     {
         Instantiate(log, collidedobject.gameObject.transform.position, Quaternion.Euler(-90, 5, 0));
         collectedwoods += 3;
+    }
+
+    public void Die()
+    {
+        Debug.Log("dead");
     }
 }
