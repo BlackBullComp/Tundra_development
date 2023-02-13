@@ -12,15 +12,23 @@ public class ActionScript : MonoBehaviour
     public int collectedwoods;
     public GameObject log;
     public GameObject Barscanvas;
+    public GameObject AddedCanvas;
+    public GameObject Axe;
     float hunger;
     float thirstyplayer;
+    public bool take_enabled;
+    public int takedobject_toinventory;
+    public Animator armanimator; 
+    GameObject takeableobject;
     
      GameObject collidedobject;
     public float Health = 100;
     void Start()
     {
+        AddedCanvas.SetActive(false);
         hunger = Barscanvas.GetComponent<hungrybarscript>().Hunger;
         thirstyplayer = Barscanvas.GetComponent<ThirstyBar>().thirsty;
+        take_enabled = false;
     }
 
     // Update is called once per frame
@@ -30,24 +38,44 @@ public class ActionScript : MonoBehaviour
     {
         HealthBar.value = Health;
         
-        if (Input.GetMouseButtonDown(0) && triggered == true)
+        if (attack ==true && triggered == true)
         {
 
-            collidedobject.GetComponent<treehealt>().tree_healt -= 1;
-            
-            
+            StartCoroutine(givedamage_totree());
+
+
+
         }
-       
 
-        if (hunger <= 0 && thirstyplayer <= 0)
+
+        if (Input.GetMouseButton(0))
         {
-           Die();
+            Axe.SetActive(true);
+            armanimator.SetBool("attack", true);
+            StartCoroutine(attackcontroller());
+        }
+        else
+        {
+            Axe.SetActive(false);
+
+            armanimator.SetBool("attack", false);
         }
 
         if (Health == 0)
         {
             Die();
         }
+
+
+        if(Input.GetKeyDown(KeyCode.E))
+        {
+            if (take_enabled == true)
+            {
+                armanimator.SetBool("take", true);
+                StartCoroutine(handsdelay());
+            }
+        }
+
 
     }
 
@@ -59,7 +87,16 @@ public class ActionScript : MonoBehaviour
             Application.LoadLevel(Application.loadedLevel);
         }
 
-
+        if (other.gameObject.tag == "obj")
+        {
+            Debug.Log("obj_collided");
+            takeableobject = other.gameObject; 
+            take_enabled = true;
+        }
+        else
+        {
+            take_enabled = false;
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -93,10 +130,54 @@ public class ActionScript : MonoBehaviour
     {
         Instantiate(log, collidedobject.gameObject.transform.position, Quaternion.Euler(-90, 5, 0));
         collectedwoods += 3;
+        AddedCanvas.SetActive(true);
+        StartCoroutine(timer());
     }
 
     public void Die()
     {
         Debug.Log("dead");
+    }
+
+    IEnumerator timer()
+    {
+        
+        yield return new WaitForSeconds(1.2f);
+        AddedCanvas.SetActive(false);
+
+    }
+
+    IEnumerator handsdelay()
+    {
+        
+        yield return new WaitForSeconds(2);
+        Destroy(takeableobject);
+        takedobject_toinventory += 1;
+        Debug.Log(takedobject_toinventory);
+
+        armanimator.SetBool("take", false);
+    }
+
+    IEnumerator attackcontroller()
+    {
+        attack = true;
+        yield return new WaitForSeconds(1);
+        Debug.Log("attacked");
+        attack = false;
+        yield break;
+    }
+
+    IEnumerator givedamage_totree()
+    {
+        yield return new WaitForSeconds(1);
+        collidedobject.GetComponent<treehealt>().tree_healt -= 1;
+    }
+
+    IEnumerator taketheaxe()
+    {
+
+        yield return new WaitForSeconds(0.4f);
+        Axe.SetActive(true);
+        
     }
 }

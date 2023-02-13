@@ -192,6 +192,10 @@ MonoBehaviour:
   collectedwoods: 0
   log: {fileID: 302343366918674787, guid: e7b95958abd2ec44498ca46518660456, type: 3}
   Barscanvas: {fileID: 0}
+  AddedCanvas: {fileID: 0}
+  take_enabled: 0
+  takedobject_toinventory: 0
+  armanimator: {fileID: 0}
   Health: 100
 --- !u!1 &4459864850190357393
 GameObject:
@@ -760,41 +764,45 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4459864851310106429}
     m_Modifications:
+    - target: {fileID: -8746058855735016753, guid: 2199e14aa95c2554e8991271300dd77a, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2199e14aa95c2554e8991271300dd77a, type: 3}
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2199e14aa95c2554e8991271300dd77a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0
+      value: 0.00000092573464
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2199e14aa95c2554e8991271300dd77a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.8219986
+      value: -0.93198776
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2199e14aa95c2554e8991271300dd77a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.151
+      value: 0.021000868
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2199e14aa95c2554e8991271300dd77a, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.98954034
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2199e14aa95c2554e8991271300dd77a, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: -0.14425674
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2199e14aa95c2554e8991271300dd77a, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0.000000014901158
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2199e14aa95c2554e8991271300dd77a, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0.0000000037252894
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2199e14aa95c2554e8991271300dd77a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
+      value: -16.588
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2199e14aa95c2554e8991271300dd77a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y

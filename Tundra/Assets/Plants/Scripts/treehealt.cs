@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class treehealt : MonoBehaviour
 {
-    public int tree_healt;
+    public int tree_healt = 3;
     public GameObject player;
     // Start is called before the first frame update
     void Start()
