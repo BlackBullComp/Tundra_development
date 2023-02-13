@@ -13,6 +13,7 @@ public class ActionScript : MonoBehaviour
     public GameObject log;
     public GameObject Barscanvas;
     public GameObject AddedCanvas;
+    public GameObject Cam;
     public GameObject Axe;
     float hunger;
     float thirstyplayer;
@@ -61,8 +62,9 @@ public class ActionScript : MonoBehaviour
             armanimator.SetBool("attack", false);
         }
 
-        if (Health == 0)
+        if (Health <= 0)
         {
+            Health = 0;
             Die();
         }
 
@@ -162,6 +164,8 @@ public class ActionScript : MonoBehaviour
     {
         attack = true;
         yield return new WaitForSeconds(1);
+
+
         Debug.Log("attacked");
         attack = false;
         yield break;
