@@ -18,9 +18,12 @@ public class ActionScript : MonoBehaviour
     float hunger;
     float thirstyplayer;
     public bool take_enabled;
+    public bool take_axe_enabled;
     public int takedobject_toinventory;
     public Animator armanimator; 
     GameObject takeableobject;
+    public bool axetaked;
+    bool take_axe_tool;
     
      GameObject collidedobject;
     public float Health = 100;
@@ -30,6 +33,7 @@ public class ActionScript : MonoBehaviour
         hunger = Barscanvas.GetComponent<hungrybarscript>().Hunger;
         thirstyplayer = Barscanvas.GetComponent<ThirstyBar>().thirsty;
         take_enabled = false;
+        axetaked = false;
     }
 
     // Update is called once per frame
@@ -48,16 +52,29 @@ public class ActionScript : MonoBehaviour
 
         }
 
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            take_axe_tool = !take_axe_tool;
+        }
 
-        if (Input.GetMouseButton(0))
+        if (take_axe_tool == true && axetaked == true)
         {
             Axe.SetActive(true);
+        }
+        else
+        {
+            Axe.SetActive(false);
+        }
+
+        if (Input.GetMouseButton(0) && axetaked == true)
+        {
+            
             armanimator.SetBool("attack", true);
             StartCoroutine(attackcontroller());
         }
         else
         {
-            Axe.SetActive(false);
+            
 
             armanimator.SetBool("attack", false);
         }
@@ -75,6 +92,15 @@ public class ActionScript : MonoBehaviour
             {
                 armanimator.SetBool("take", true);
                 StartCoroutine(handsdelay());
+            }else if (take_axe_enabled == true)
+            {
+                armanimator.SetBool("take", true);
+                StartCoroutine(axetakedelay());
+                
+            }
+            else
+            {
+               axetaked= false;
             }
         }
 
@@ -98,6 +124,18 @@ public class ActionScript : MonoBehaviour
         else
         {
             take_enabled = false;
+            
+        }
+        if (other.gameObject.tag == "axe")
+        {
+            Debug.Log("axecollided");
+            takeableobject = other.gameObject;
+            take_axe_enabled = true;
+        }
+        else
+        {
+            take_axe_enabled = false;
+            
         }
     }
 
@@ -183,5 +221,16 @@ public class ActionScript : MonoBehaviour
         yield return new WaitForSeconds(0.4f);
         Axe.SetActive(true);
         
+    }
+
+    IEnumerator axetakedelay()
+    {
+
+        yield return new WaitForSeconds(2);
+        Destroy(takeableobject);
+        takedobject_toinventory += 1;
+        Debug.Log(takedobject_toinventory);
+        axetaked = true;
+        armanimator.SetBool("take", false);
     }
 }
