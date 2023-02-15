@@ -27,24 +27,29 @@ public class hungrybarscript : MonoBehaviour
 
         //açlýk barýný azalttýk
         if(Input.GetKey(KeyCode.W))
-            { Hunger -= 2f * Time.deltaTime; }
+            { Hunger -= 1.2f * Time.deltaTime; }
         if (Input.GetKey(KeyCode.A))
-        { Hunger -= 2f * Time.deltaTime; }
+        { Hunger -= 1.2f * Time.deltaTime; }
         if (Input.GetKey(KeyCode.S))
-        { Hunger -= 2f * Time.deltaTime; }
+        { Hunger -= 1.2f * Time.deltaTime; }
         if (Input.GetKey(KeyCode.D))
-        { Hunger -= 2f * Time.deltaTime; }
+        { Hunger -= 1.2f * Time.deltaTime; }
 
         if (Input.GetKey(KeyCode.LeftShift))
-        { Hunger -= 3f * Time.deltaTime; }
+        { Hunger -= 2f * Time.deltaTime; }
 
         if (Input.GetKeyDown(KeyCode.Space))
-        { Hunger -= 2.5f; }
+        { Hunger -= 1.5f; }
 
         if (Hunger <= 0)
         {
             Hunger = 0f;
             Player.GetComponent<ActionScript>().Health -= 1*Time.deltaTime;
+            if (Player.GetComponent<ActionScript>().Health <= 0)
+            {
+                Player.GetComponent<ActionScript>().Health = 0;
+                Player.GetComponent<ActionScript>().Die();
+            }
         }
 
     }

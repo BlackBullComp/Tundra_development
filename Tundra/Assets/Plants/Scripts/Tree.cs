@@ -6,8 +6,8 @@ using UnityEngine;
 public class Tree : MonoBehaviour
 {
 
-    public int TreeHealth;
-    public int Damage;
+    public float TreeHealth;
+    public float Damage;
     public GameObject Player;
     public GameObject Log;
     Vector3 SpawnTransform;
@@ -69,7 +69,7 @@ public class Tree : MonoBehaviour
     IEnumerator DamageTime()
     {
         yield return new WaitForSeconds(time);
-        TreeHealth -= Damage;
+        TreeHealth -= Damage * Time.deltaTime;
         yield return new WaitForSeconds(time);
         if (TreeHealth <= 0 && get_damage == true)
         {

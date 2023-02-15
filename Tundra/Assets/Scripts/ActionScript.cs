@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -66,7 +67,7 @@ public class ActionScript : MonoBehaviour
             Axe.SetActive(false);
         }
 
-        if (Input.GetMouseButton(0) && axetaked == true)
+        if (Input.GetMouseButton(0) && axetaked == true && take_axe_tool == true)
         {
             
             armanimator.SetBool("attack", true);
@@ -177,6 +178,7 @@ public class ActionScript : MonoBehaviour
     public void Die()
     {
         Debug.Log("dead");
+        Application.LoadLevel("");
     }
 
     IEnumerator timer()
