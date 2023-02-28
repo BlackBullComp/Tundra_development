@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class ActionScript : MonoBehaviour
 {
     // Start is called before the first frame update
-    public Slider HealthBar;
+    public Image HealthBar;
     public bool attack;
     public bool triggered;
     public int collectedwoods;
@@ -17,6 +17,7 @@ public class ActionScript : MonoBehaviour
     public GameObject Cam;
     public GameObject Axe;
     float hunger;
+    public string menulevel;
     float thirstyplayer;
     public bool take_enabled;
     public bool take_axe_enabled;
@@ -25,6 +26,7 @@ public class ActionScript : MonoBehaviour
     GameObject takeableobject;
     public bool axetaked;
     bool take_axe_tool;
+    float percent;
     
      GameObject collidedobject;
     public float Health = 100;
@@ -42,7 +44,8 @@ public class ActionScript : MonoBehaviour
 
     void Update()
     {
-        HealthBar.value = Health;
+        percent = Health / 100;
+        HealthBar.fillAmount = percent;
         
         if (attack ==true && triggered == true)
         {
@@ -92,8 +95,10 @@ public class ActionScript : MonoBehaviour
             if (take_enabled == true)
             {
                 armanimator.SetBool("take", true);
+                Axe.SetActive(false);
                 StartCoroutine(handsdelay());
-            }else if (take_axe_enabled == true)
+            }else {
+            if (take_axe_enabled == true)
             {
                 armanimator.SetBool("take", true);
                 StartCoroutine(axetakedelay());
@@ -102,6 +107,7 @@ public class ActionScript : MonoBehaviour
             else
             {
                axetaked= false;
+            }
             }
         }
 
@@ -178,7 +184,7 @@ public class ActionScript : MonoBehaviour
     public void Die()
     {
         Debug.Log("dead");
-        Application.LoadLevel("");
+        Application.LoadLevel(menulevel);
     }
 
     IEnumerator timer()

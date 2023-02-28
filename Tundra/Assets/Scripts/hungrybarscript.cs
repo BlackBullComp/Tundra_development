@@ -5,9 +5,9 @@ using UnityEngine.UI;
 public class hungrybarscript : MonoBehaviour
 {
     
-    public Slider HungerSlider;
+    public Image HungerSlider;
 
-
+    float percent;
     public GameObject Player;
 
     public float Hunger;
@@ -20,9 +20,9 @@ public class hungrybarscript : MonoBehaviour
     
     void Update()
     {
-        
+        percent = Hunger / 100;
         //deðerin oyun ýcýnde degýsecegý ýcýn buraya yazýyoruz.
-        HungerSlider.value = Hunger;
+        HungerSlider.fillAmount = percent;
         Hunger -= 1f* Time.deltaTime;
 
         //açlýk barýný azalttýk

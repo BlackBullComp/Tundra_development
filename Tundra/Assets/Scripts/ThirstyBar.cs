@@ -6,11 +6,11 @@ using UnityEngine.UI;
 
 public class ThirstyBar : MonoBehaviour
 {
-    public Slider thirstybar;
+    public Image thirstybar;
     public float thirsty;
     public float minusthirstybarValue;
     public float minustime;
-    
+    float percent;
     float maxThirsty = 100f;
 
     
@@ -24,8 +24,9 @@ public class ThirstyBar : MonoBehaviour
     
     void Update()
     {
-        
-       thirstybar.value = thirsty;
+        percent = thirsty / 100;
+       
+        thirstybar.fillAmount = percent;
         thirsty -= minusthirstybarValue * Time.deltaTime * minustime;
 
         if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.Space))
