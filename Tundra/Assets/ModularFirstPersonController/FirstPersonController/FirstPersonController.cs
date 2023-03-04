@@ -18,9 +18,11 @@ public class FirstPersonController : MonoBehaviour
 {
     private Rigidbody rb;
 
+
     #region Camera Movement Variables
 
     public Camera playerCamera;
+
 
     public float fov = 60f;
     public bool invertCamera = false;
@@ -58,7 +60,6 @@ public class FirstPersonController : MonoBehaviour
     public bool playerCanMove = true;
     public float walkSpeed = 5f;
     public float maxVelocityChange = 10f;
-
     // Internal Variables
     private bool isWalking = false;
 
@@ -362,7 +363,11 @@ public class FirstPersonController : MonoBehaviour
         {
             HeadBob();
         }
+
+        mouseSensitivity = PlayerPrefs.GetFloat("Sensivity" ,1);
     }
+
+    
 
     void FixedUpdate()
     {
@@ -382,6 +387,7 @@ public class FirstPersonController : MonoBehaviour
             else
             {
                 isWalking = false;
+
             }
 
             // All movement calculations shile sprint is active
@@ -505,16 +511,22 @@ public class FirstPersonController : MonoBehaviour
             if(isSprinting)
             {
                 timer += Time.deltaTime * (bobSpeed + sprintSpeed);
+
+                PlayerPrefs.SetString("Walking", "walk");
             }
             // Calculates HeadBob speed during crouched movement
             else if (isCrouched)
             {
                 timer += Time.deltaTime * (bobSpeed * speedReduction);
+
+                PlayerPrefs.SetString("Walking", "non-walk");
             }
             // Calculates HeadBob speed during walking
             else
             {
                 timer += Time.deltaTime * bobSpeed;
+
+                PlayerPrefs.SetString("Walking", "non-walk");
             }
             // Applies HeadBob movement
             joint.localPosition = new Vector3(jointOriginalPos.x + Mathf.Sin(timer) * bobAmount.x, jointOriginalPos.y + Mathf.Sin(timer) * bobAmount.y, jointOriginalPos.z + Mathf.Sin(timer) * bobAmount.z);

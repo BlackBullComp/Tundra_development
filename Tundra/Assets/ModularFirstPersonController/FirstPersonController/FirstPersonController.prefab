@@ -172,7 +172,7 @@ MonoBehaviour:
   speedReduction: 0.5
   enableHeadBob: 1
   joint: {fileID: 4459864851508666808}
-  bobSpeed: 10
+  bobSpeed: 15
   bobAmount: {x: 0, y: 0.1, z: 0}
 --- !u!114 &4889945533386987025
 MonoBehaviour:
@@ -195,9 +195,13 @@ MonoBehaviour:
   AddedCanvas: {fileID: 0}
   Cam: {fileID: 4459864851508666809}
   Axe: {fileID: 0}
+  menulevel: 
   take_enabled: 0
+  take_axe_enabled: 0
   takedobject_toinventory: 0
   armanimator: {fileID: 0}
+  axetaked: 0
+  PauseCanvas: {fileID: 0}
   Health: 100
 --- !u!1 &4459864850190357393
 GameObject:
@@ -796,11 +800,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2199e14aa95c2554e8991271300dd77a, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.000000014901158
+      value: 0.00000004470348
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2199e14aa95c2554e8991271300dd77a, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.0000000037252894
+      value: 0.0000000037252899
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2199e14aa95c2554e8991271300dd77a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

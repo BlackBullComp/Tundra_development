@@ -27,6 +27,7 @@ public class ActionScript : MonoBehaviour
     public bool axetaked;
     bool take_axe_tool;
     float percent;
+    public GameObject PauseCanvas;
     
      GameObject collidedobject;
     public float Health = 100;
@@ -37,6 +38,7 @@ public class ActionScript : MonoBehaviour
         thirstyplayer = Barscanvas.GetComponent<ThirstyBar>().thirsty;
         take_enabled = false;
         axetaked = false;
+        PauseCanvas.SetActive(false);
     }
 
     // Update is called once per frame
@@ -44,6 +46,17 @@ public class ActionScript : MonoBehaviour
 
     void Update()
     {
+
+        if (PlayerPrefs.GetString("Walking","walk") == "walk")
+        {
+            armanimator.SetBool("ismoving",true);
+        }
+        else
+        {
+            armanimator.SetBool("ismoving",false);
+        }
+
+
         percent = Health / 100;
         HealthBar.fillAmount = percent;
         
@@ -111,9 +124,27 @@ public class ActionScript : MonoBehaviour
             }
         }
 
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Time.timeScale =0f;
+            PauseCanvas.SetActive(true);
+            Cursor.lockState = CursorLockMode.Confined;
+            Cursor.visible = true;
+            GetComponent<FirstPersonController>().enabled = false;
+        }
 
+        if (Input.GetKey(KeyCode.Tab))
+        {
+            Map.SetActive(true);
+            armanimator.SetBool("look" , true);
+        }
+        else
+        {
+            Map.SetActive(false);   
+            armanimator.SetBool("look", false);
+        }
     }
-
+    public GameObject Map;
 
     private void OnCollisionEnter(Collision other)
     {
