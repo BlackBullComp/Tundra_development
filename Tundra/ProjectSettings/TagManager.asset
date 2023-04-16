@@ -11,6 +11,7 @@ TagManager:
   - water
   - Tree
   - obj
+  - tacticalaxe
   layers:
   - Default
   - TransparentFX

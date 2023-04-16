@@ -143,6 +143,14 @@ public class ActionScript : MonoBehaviour
             Map.SetActive(false);   
             armanimator.SetBool("look", false);
         }
+
+        if (GetComponent<FirstPersonController>().isSprinting == true)
+        {
+            Axe.SetActive(false);
+
+            armanimator.SetBool("attack", false);
+        }
+     
     }
     public GameObject Map;
 
@@ -265,11 +273,15 @@ public class ActionScript : MonoBehaviour
     IEnumerator axetakedelay()
     {
 
+        GetComponent<FirstPersonController>().playerCanMove = false;
+        GetComponent<FirstPersonController>().cameraCanMove = false;
         yield return new WaitForSeconds(2);
         Destroy(takeableobject);
         takedobject_toinventory += 1;
         Debug.Log(takedobject_toinventory);
         axetaked = true;
         armanimator.SetBool("take", false);
+        GetComponent<FirstPersonController>().playerCanMove = true;
+        GetComponent<FirstPersonController>().cameraCanMove = true;
     }
 }
