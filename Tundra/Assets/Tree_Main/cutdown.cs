@@ -9,6 +9,7 @@ public class cutdown : MonoBehaviour
     private bool isFallen = false;
     public GameObject P;
     public GameObject LOG;
+    public GameObject Spawner;
 
 
     private void Start()
@@ -46,7 +47,7 @@ public class cutdown : MonoBehaviour
     {
         yield return new WaitForSeconds(5);
         Destroy(thistree);
-        Instantiate(LOG, thistree.transform.position,Quaternion.identity);
+        Instantiate(LOG, Spawner.transform.position,Quaternion.identity);
         
     }
 }
