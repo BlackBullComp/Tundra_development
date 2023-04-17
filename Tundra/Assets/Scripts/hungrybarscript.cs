@@ -23,20 +23,20 @@ public class hungrybarscript : MonoBehaviour
         percent = Hunger / 100;
         //deðerin oyun ýcýnde degýsecegý ýcýn buraya yazýyoruz.
         HungerSlider.fillAmount = percent;
-        Hunger -= 1f* Time.deltaTime;
+        Hunger -= 0.5f* Time.deltaTime;
 
         //açlýk barýný azalttýk
         if(Input.GetKey(KeyCode.W))
-            { Hunger -= 1.2f * Time.deltaTime; }
+            { Hunger -= 0.6f * Time.deltaTime; }
         if (Input.GetKey(KeyCode.A))
-        { Hunger -= 1.2f * Time.deltaTime; }
+        { Hunger -= 0.6f * Time.deltaTime; }
         if (Input.GetKey(KeyCode.S))
-        { Hunger -= 1.2f * Time.deltaTime; }
+        { Hunger -= 0.6f * Time.deltaTime; }
         if (Input.GetKey(KeyCode.D))
-        { Hunger -= 1.2f * Time.deltaTime; }
+        { Hunger -= 0.6f * Time.deltaTime; }
 
         if (Input.GetKey(KeyCode.LeftShift))
-        { Hunger -= 2f * Time.deltaTime; }
+        { Hunger -= 1f * Time.deltaTime; }
 
         if (Input.GetKeyDown(KeyCode.Space))
         { Hunger -= 1.5f; }

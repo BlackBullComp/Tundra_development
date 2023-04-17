@@ -17,7 +17,7 @@ public class ThirstyBar : MonoBehaviour
     void Start()
     {
         thirsty = maxThirsty;
-        minusthirstybarValue = 1f;
+        minusthirstybarValue = 0.5f;
         minustime = 1f;
     }
 
@@ -31,7 +31,7 @@ public class ThirstyBar : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.Space))
         {
-            minustime = minustime * 2;
+            minustime = minustime * 2f;
         }
         else
         {
