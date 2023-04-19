@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class ActionScript : MonoBehaviour
 {
-    // Start is called before the first frame update
+    //Setup:
     public Image HealthBar;
     public bool attack;
     public bool triggered;
@@ -28,8 +28,12 @@ public class ActionScript : MonoBehaviour
     bool take_axe_tool;
     float percent;
     public GameObject PauseCanvas;
-    
-     GameObject collidedobject;
+    //invetory system:
+    public bool open›nventory;
+    public GameObject InventoryLayout;
+
+
+    GameObject collidedobject;
     public float Health = 100;
     void Start()
     {
@@ -103,7 +107,7 @@ public class ActionScript : MonoBehaviour
         }
 
 
-        if(Input.GetKeyDown(KeyCode.E))
+        if(Input.GetKeyDown(KeyCode.E) && take_axe_enabled == true)
         {
             if (take_enabled == true)
             {
@@ -150,8 +154,26 @@ public class ActionScript : MonoBehaviour
 
             armanimator.SetBool("attack", false);
         }
-     
+
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            open›nventory = !open›nventory;
+        }
+
+        if (open›nventory == true)
+        {
+            InventoryLayout.SetActive(true);
+        }
+        else
+        {
+            InventoryLayout.SetActive(false);
+
+        }
+
     }
+    
+
+
     public GameObject Map;
 
     private void OnCollisionEnter(Collision other)
