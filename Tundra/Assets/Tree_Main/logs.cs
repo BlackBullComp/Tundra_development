@@ -1,15 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class logs : MonoBehaviour
 {
      ActionScript P;
-
     // Start is called before the first frame update
     void Start()
     {
        P=GameObject.Find("FirstPersonController").GetComponent<ActionScript>();
+        
+    }
+
+
+    private void Update()
+    {
+
     }
 
     // Update is called once per frame
@@ -18,7 +25,7 @@ public class logs : MonoBehaviour
         if (collision.gameObject.tag =="Player")
         {
 
-            P.collectedwoods += 1;
+            P.collectedwoods += 3;
             P.AddedCanvas.SetActive(true);
             Destroy(gameObject);
         }

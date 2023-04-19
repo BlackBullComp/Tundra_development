@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.SearchService;
 using UnityEngine;
+using TMPro;
 using UnityEngine.UI;
 
 public class ActionScript : MonoBehaviour
@@ -28,11 +29,10 @@ public class ActionScript : MonoBehaviour
     bool take_axe_tool;
     float percent;
     public GameObject PauseCanvas;
-    //invetory system:
-    public bool open›nventory;
-    public GameObject InventoryLayout;
-
-
+    public GameObject Axeininventory;
+    public GameObject Axeonhand;
+    public TMP_Text woodcount;
+    public GameObject WoodIcon;
     GameObject collidedobject;
     public float Health = 100;
     void Start()
@@ -43,6 +43,9 @@ public class ActionScript : MonoBehaviour
         take_enabled = false;
         axetaked = false;
         PauseCanvas.SetActive(false);
+        Axeininventory.SetActive(false);
+        Axeonhand.SetActive(false);
+        
     }
 
     // Update is called once per frame
@@ -50,6 +53,7 @@ public class ActionScript : MonoBehaviour
 
     void Update()
     {
+        woodcount.text = collectedwoods.ToString();
 
         if (PlayerPrefs.GetString("Walking","walk") == "walk")
         {
@@ -81,10 +85,14 @@ public class ActionScript : MonoBehaviour
         if (take_axe_tool == true && axetaked == true)
         {
             Axe.SetActive(true);
+            Axeininventory.SetActive(false);
+            Axeonhand.SetActive(true);
         }
         else
         {
             Axe.SetActive(false);
+            Axeininventory.SetActive(true);
+            Axeonhand.SetActive(false);
         }
 
         if (Input.GetMouseButton(0) && axetaked == true && take_axe_tool == true)
@@ -107,23 +115,30 @@ public class ActionScript : MonoBehaviour
         }
 
 
-        if(Input.GetKeyDown(KeyCode.E) && take_axe_enabled == true)
+        if(Input.GetKeyDown(KeyCode.E) && take_axe_enabled == true || take_enabled == true)
         {
             if (take_enabled == true)
             {
                 armanimator.SetBool("take", true);
                 Axe.SetActive(false);
+
+                Axeininventory.SetActive(true);
+                Axeonhand.SetActive(false);
                 StartCoroutine(handsdelay());
+
             }else {
             if (take_axe_enabled == true)
             {
                 armanimator.SetBool("take", true);
                 StartCoroutine(axetakedelay());
-                
-            }
+                Axeininventory.SetActive(false);
+                Axeonhand.SetActive(true);
+                }
             else
             {
-               axetaked= false;
+                    axetaked= false;
+                    Axeininventory.SetActive(false);
+                    Axeonhand.SetActive(false);
             }
             }
         }
@@ -155,18 +170,21 @@ public class ActionScript : MonoBehaviour
             armanimator.SetBool("attack", false);
         }
 
-        if (Input.GetKeyDown(KeyCode.I))
+        if (axetaked == false)
         {
-            open›nventory = !open›nventory;
+
+            Axeininventory.SetActive(false);
+            Axeonhand.SetActive(false);
         }
 
-        if (open›nventory == true)
+        if (collectedwoods <= 0)
         {
-            InventoryLayout.SetActive(true);
+            collectedwoods = 0;
+            WoodIcon.SetActive(false);
         }
         else
         {
-            InventoryLayout.SetActive(false);
+            WoodIcon.SetActive(true);
 
         }
 
