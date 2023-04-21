@@ -53,5 +53,6 @@ public class Buttonmanager : MonoBehaviour
         Time.timeScale = 1;
         player.GetComponent<FirstPersonController>().enabled = true;
         player.GetComponent<ActionScript>().PauseCanvas.SetActive(false);
+        player.GetComponent<ActionScript>().Paused = false;
     }
 }

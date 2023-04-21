@@ -45,11 +45,21 @@ public class hungrybarscript : MonoBehaviour
         {
             Hunger = 0f;
             Player.GetComponent<ActionScript>().Health -= 1*Time.deltaTime;
+            Player.GetComponent<FirstPersonController>().enableSprint= false;        
+            Player.GetComponent<FirstPersonController>().useSprintBar= false;        
+            Player.GetComponent<FirstPersonController>().enableJump= false;        
             if (Player.GetComponent<ActionScript>().Health <= 0)
             {
                 Player.GetComponent<ActionScript>().Health = 0;
                 Player.GetComponent<ActionScript>().Die();
             }
+        }
+        else
+        {
+
+            Player.GetComponent<FirstPersonController>().enableSprint = true;
+            Player.GetComponent<FirstPersonController>().useSprintBar = true;
+            Player.GetComponent<FirstPersonController>().enableJump = true;
         }
 
     }

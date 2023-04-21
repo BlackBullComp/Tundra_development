@@ -35,6 +35,7 @@ public class ActionScript : MonoBehaviour
     public GameObject WoodIcon;
     GameObject collidedobject;
     public float Health = 100;
+    public bool Paused;
     void Start()
     {
         AddedCanvas.SetActive(false);
@@ -150,6 +151,7 @@ public class ActionScript : MonoBehaviour
             Cursor.lockState = CursorLockMode.Confined;
             Cursor.visible = true;
             GetComponent<FirstPersonController>().enabled = false;
+            Paused = true;
         }
 
         if (Input.GetKey(KeyCode.Tab))
@@ -186,6 +188,13 @@ public class ActionScript : MonoBehaviour
         {
             WoodIcon.SetActive(true);
 
+        }
+
+        if (GetComponent<Inventory>().openInventory == false || Paused == false)
+        {
+
+            Cursor.lockState = CursorLockMode.Confined;
+            Cursor.visible = false;
         }
 
     }

@@ -7,7 +7,7 @@ public class Inventory : MonoBehaviour
 
 
     //inventory
-    bool openInventory;
+    public bool openInventory;
     public GameObject InventoryLayout;
     //
     private void Update()
@@ -28,9 +28,6 @@ public class Inventory : MonoBehaviour
         else
         {
             InventoryLayout.SetActive(false);
-
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
 
             GetComponent<FirstPersonController>().cameraCanMove = true;
             GetComponent<FirstPersonController>().playerCanMove = true;
