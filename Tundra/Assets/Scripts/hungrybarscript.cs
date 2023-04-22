@@ -57,8 +57,6 @@ public class hungrybarscript : MonoBehaviour
         else
         {
 
-            Player.GetComponent<FirstPersonController>().enableSprint = true;
-            Player.GetComponent<FirstPersonController>().useSprintBar = true;
             Player.GetComponent<FirstPersonController>().enableJump = true;
         }
 

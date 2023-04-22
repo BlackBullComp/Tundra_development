@@ -36,8 +36,13 @@ public class ActionScript : MonoBehaviour
     GameObject collidedobject;
     public float Health = 100;
     public bool Paused;
+    public GameObject LogPref;
+    public GameObject droplogpref;
+    public bool logsactive = false;
+    public bool hadspawned = false;
     void Start()
     {
+        LogPref.SetActive(false);
         AddedCanvas.SetActive(false);
         hunger = Barscanvas.GetComponent<hungrybarscript>().Hunger;
         thirstyplayer = Barscanvas.GetComponent<ThirstyBar>().thirsty;
@@ -54,6 +59,8 @@ public class ActionScript : MonoBehaviour
 
     void Update()
     {
+        LogPref.SetActive(logsactive);
+
         woodcount.text = collectedwoods.ToString();
 
         if (PlayerPrefs.GetString("Walking","walk") == "walk")
@@ -195,6 +202,26 @@ public class ActionScript : MonoBehaviour
 
             Cursor.lockState = CursorLockMode.Confined;
             Cursor.visible = false;
+        }
+
+        if (logsactive == true)
+        {
+            Axe.SetActive(false);
+            GetComponent<FirstPersonController>().enableSprint = false;
+            GetComponent<FirstPersonController>().useSprintBar = false;
+        }
+        else
+        {
+            
+            GetComponent<FirstPersonController>().enableSprint = true;
+            GetComponent<FirstPersonController>().useSprintBar = true;
+        }
+
+        if (Input.GetKeyDown(KeyCode.G) && hadspawned == false && logsactive == true)
+        {
+            logsactive = false;
+            Vector3 tr = new Vector3(this.transform.position.x + 2, transform.position.y + 1, transform.position.z + 2); 
+            Instantiate(droplogpref, tr,Quaternion.identity);
         }
 
     }

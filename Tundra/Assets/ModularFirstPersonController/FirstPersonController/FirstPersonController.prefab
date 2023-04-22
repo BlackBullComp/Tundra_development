@@ -326,7 +326,12 @@ MonoBehaviour:
   armanimator: {fileID: 0}
   axetaked: 0
   PauseCanvas: {fileID: 0}
+  Axeininventory: {fileID: 0}
+  Axeonhand: {fileID: 0}
+  woodcount: {fileID: 0}
+  WoodIcon: {fileID: 0}
   Health: 100
+  Paused: 0
   Map: {fileID: 0}
 --- !u!1 &4459864850831721272
 GameObject:
