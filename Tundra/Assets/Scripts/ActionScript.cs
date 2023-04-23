@@ -40,8 +40,14 @@ public class ActionScript : MonoBehaviour
     public GameObject droplogpref;
     public bool logsactive = false;
     public bool hadspawned = false;
+
+    public GameObject RockPref;
+    bool TakeRock;
+    bool rocktaked = false;
+    public GameObject Rock;
     void Start()
     {
+        Rock.SetActive(false);
         LogPref.SetActive(false);
         AddedCanvas.SetActive(false);
         hunger = Barscanvas.GetComponent<hungrybarscript>().Hunger;
@@ -122,19 +128,23 @@ public class ActionScript : MonoBehaviour
             Die();
         }
 
-
-        if(Input.GetKeyDown(KeyCode.E) && take_axe_enabled == true || take_enabled == true)
+        if (Input.GetKeyDown(KeyCode.E) && TakeRock == true)
         {
-            if (take_enabled == true)
+            if (TakeRock == true)
             {
                 armanimator.SetBool("take", true);
-                Axe.SetActive(false);
-
                 Axeininventory.SetActive(true);
                 Axeonhand.SetActive(false);
                 StartCoroutine(handsdelay());
 
-            }else {
+            }
+            else
+            {
+            }
+        }
+            if (Input.GetKeyDown(KeyCode.E) && take_axe_enabled == true)
+        {
+            
             if (take_axe_enabled == true)
             {
                 armanimator.SetBool("take", true);
@@ -148,7 +158,7 @@ public class ActionScript : MonoBehaviour
                     Axeininventory.SetActive(false);
                     Axeonhand.SetActive(false);
             }
-            }
+            
         }
 
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -224,10 +234,16 @@ public class ActionScript : MonoBehaviour
             Instantiate(droplogpref, tr,Quaternion.identity);
             armanimator.SetBool("wood", false);
         }
+        else if(Input.GetKeyDown(KeyCode.G) && hadspawned == false && rocktaked == true)
+        {
+            rocktaked = false;
+            Vector3 tr = new Vector3(this.transform.position.x + 1, transform.position.y, transform.position.z + 1);
+            Instantiate(RockPref, tr, Quaternion.identity);
+            armanimator.SetBool("Pick the Rock", false);
+            Rock.SetActive(false);  
+        }
 
     }
-    
-
 
     public GameObject Map;
 
@@ -242,7 +258,7 @@ public class ActionScript : MonoBehaviour
         {
             Debug.Log("obj_collided");
             takeableobject = other.gameObject; 
-            take_enabled = true;
+            TakeRock= true;
         }
         else
         {
@@ -320,6 +336,10 @@ public class ActionScript : MonoBehaviour
         Debug.Log(takedobject_toinventory);
 
         armanimator.SetBool("take", false);
+        armanimator.SetBool("Pick the Rock", true);
+        yield return new WaitForSeconds(0.5f);
+        Rock.SetActive(true);
+        rocktaked = true;
     }
 
     IEnumerator attackcontroller()
