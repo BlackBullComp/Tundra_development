@@ -23,6 +23,7 @@ public class Takethelogonhand : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
+            P.armanimator.SetBool("wood", true);
                 P.Axe.SetActive(false);
             P.logsactive = true;
                 Destroy(gameObject);

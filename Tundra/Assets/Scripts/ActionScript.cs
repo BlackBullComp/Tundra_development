@@ -222,6 +222,7 @@ public class ActionScript : MonoBehaviour
             logsactive = false;
             Vector3 tr = new Vector3(this.transform.position.x + 2, transform.position.y + 1, transform.position.z + 2); 
             Instantiate(droplogpref, tr,Quaternion.identity);
+            armanimator.SetBool("wood", false);
         }
 
     }
