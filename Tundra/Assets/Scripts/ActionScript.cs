@@ -165,7 +165,7 @@ public class ActionScript : MonoBehaviour
         {
             Time.timeScale =0f;
             PauseCanvas.SetActive(true);
-            Cursor.lockState = CursorLockMode.Confined;
+            Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
             GetComponent<FirstPersonController>().enabled = false;
             Paused = true;
