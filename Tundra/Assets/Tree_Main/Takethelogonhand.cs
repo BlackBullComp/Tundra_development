@@ -6,6 +6,7 @@ public class Takethelogonhand : MonoBehaviour
 {
 
     ActionScript P;
+    public int collected_log = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,23 +17,23 @@ public class Takethelogonhand : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        collected_log = PlayerPrefs.GetInt("log_count",0);
+
+
     }
 
-    private void OnCollisionEnter(Collision collision)
+
+    void show_logs()
     {
-        if (collision.gameObject.tag == "Player")
-        {
-            P.armanimator.SetBool("wood", true);
-                P.Axe.SetActive(false);
-            P.logsactive = true;
-                Destroy(gameObject);
-            
-        }
-        else
-        {
-            P.Axe.SetActive(true);
-            P.logsactive = false;
-        }
+        P.armanimator.SetBool("wood", true);
+        P.Axe.SetActive(false);
+        P.logsactive = true;
     }
+
+    void novisibilityfrombegin_log()
+    {
+
+        P.logsactive = false;
+    }
+
 }

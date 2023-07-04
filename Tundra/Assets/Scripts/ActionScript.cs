@@ -12,6 +12,7 @@ public class ActionScript : MonoBehaviour
     public bool attack;
     public bool triggered;
     public int collectedwoods;
+    public int collectedlogs;
     public GameObject log;
     public GameObject Barscanvas;
     public GameObject AddedCanvas;
@@ -47,6 +48,7 @@ public class ActionScript : MonoBehaviour
     public GameObject Rock;
     void Start()
     {
+        collectedlogs = 0;
         Rock.SetActive(false);
         LogPref.SetActive(false);
         AddedCanvas.SetActive(false);
@@ -230,6 +232,7 @@ public class ActionScript : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.G) && hadspawned == false && logsactive == true)
         {
             logsactive = false;
+            collectedlogs = 0;
             Vector3 tr = new Vector3(this.transform.position.x + 2, transform.position.y + 1, transform.position.z + 2); 
             Instantiate(droplogpref, tr,Quaternion.identity);
             armanimator.SetBool("wood", false);
@@ -242,9 +245,16 @@ public class ActionScript : MonoBehaviour
             armanimator.SetBool("Pick the Rock", false);
             Rock.SetActive(false);  
         }
+        if (collectedlogs >= 3)
+        {
+            logsactive = true; 
+            armanimator.SetBool("wood", true);
+            Axe.SetActive(false);
+        }
+
+
 
     }
-
     public GameObject Map;
 
     private void OnCollisionEnter(Collision other)

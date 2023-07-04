@@ -12,6 +12,7 @@ TagManager:
   - Tree
   - obj
   - tacticalaxe
+  - _log
   layers:
   - Default
   - TransparentFX
