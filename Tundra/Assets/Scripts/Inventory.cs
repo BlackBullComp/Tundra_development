@@ -8,7 +8,10 @@ public class Inventory : MonoBehaviour
 
     //inventory
     public bool openInventory;
+    //sonradan düzeltilecek
     public GameObject InventoryLayout;
+    public Camera Cam;
+
     //
     private void Update()
     {
@@ -24,13 +27,20 @@ public class Inventory : MonoBehaviour
             Cursor.visible = true;
             GetComponent<FirstPersonController>().cameraCanMove = false;
             GetComponent<FirstPersonController>().playerCanMove = false;
+            Cam.GetComponent<Camera>().fieldOfView = 100;
+            Cam.gameObject.transform.rotation = Quaternion.Euler(45,0, 0);
         }
         else
         {
             InventoryLayout.SetActive(false);
 
+
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
             GetComponent<FirstPersonController>().cameraCanMove = true;
             GetComponent<FirstPersonController>().playerCanMove = true;
+
+            Cam.GetComponent<Camera>().fieldOfView = 60;
         }
     }
 

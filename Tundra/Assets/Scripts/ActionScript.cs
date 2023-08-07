@@ -235,7 +235,7 @@ public class ActionScript : MonoBehaviour
             GetComponent<FirstPersonController>().useSprintBar = true;
         }
 
-        if (Input.GetKeyDown(KeyCode.G) && hadspawned == false && logsactive == true)
+        if (Input.GetKeyDown(KeyCode.G) && hadspawned == false && logsactive == true && logsactive2 == true && logsactive3 == true)
         {
             logsactive = false;
             logsactive2 = false;

@@ -867,7 +867,7 @@ PrefabInstance:
     - target: {fileID: 4889945533386987025, guid: 6bacecc4f3df9584198879c73a6b6c36, type: 3}
       propertyPath: WoodIcon
       value: 
-      objectReference: {fileID: 205923386}
+      objectReference: {fileID: 1277865342}
     - target: {fileID: 4889945533386987025, guid: 6bacecc4f3df9584198879c73a6b6c36, type: 3}
       propertyPath: Axeonhand
       value: 
@@ -2166,6 +2166,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 303105515}
   m_CullTransparentMesh: 1
+--- !u!20 &306779350 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 4459864851310106426, guid: 6bacecc4f3df9584198879c73a6b6c36, type: 3}
+  m_PrefabInstance: {fileID: 111751270}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &309601715
 GameObject:
   m_ObjectHideFlags: 0
@@ -3892,7 +3897,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &580378380
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4670,7 +4675,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &745007623
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6061,8 +6066,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 998839348}
-  m_LocalRotation: {x: 0.177058, y: -0.7372167, z: -0.2071624, w: -0.6182603}
-  m_LocalPosition: {x: -664.6307, y: 805.02997, z: -36.45014}
+  m_LocalRotation: {x: -0, y: 0.24504273, z: -0, w: 0.9695123}
+  m_LocalPosition: {x: -668.0805, y: 809.93866, z: -43.865524}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6864,7 +6869,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   openInventory: 0
-  InventoryLayout: {fileID: 601854090}
+  InventoryLayout: {fileID: 580378379}
+  Cam: {fileID: 306779350}
 --- !u!1 &1224738125
 GameObject:
   m_ObjectHideFlags: 0
