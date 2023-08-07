@@ -38,8 +38,12 @@ public class ActionScript : MonoBehaviour
     public float Health = 100;
     public bool Paused;
     public GameObject LogPref;
+    public GameObject LogPref2;
+    public GameObject LogPref3;
     public GameObject droplogpref;
     public bool logsactive = false;
+    public bool logsactive2 = false;
+    public bool logsactive3 = false;
     public bool hadspawned = false;
 
     public GameObject RockPref;
@@ -68,6 +72,8 @@ public class ActionScript : MonoBehaviour
     void Update()
     {
         LogPref.SetActive(logsactive);
+        LogPref2.SetActive(logsactive2);
+        LogPref3.SetActive(logsactive3);
 
         woodcount.text = collectedwoods.ToString();
 
@@ -232,6 +238,8 @@ public class ActionScript : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.G) && hadspawned == false && logsactive == true)
         {
             logsactive = false;
+            logsactive2 = false;
+            logsactive3 = false;
             collectedlogs = 0;
             Vector3 tr = new Vector3(this.transform.position.x + 2, transform.position.y + 1, transform.position.z + 2); 
             Instantiate(droplogpref, tr,Quaternion.identity);
@@ -245,11 +253,17 @@ public class ActionScript : MonoBehaviour
             armanimator.SetBool("Pick the Rock", false);
             Rock.SetActive(false);  
         }
-        if (collectedlogs >= 3)
+        if (collectedlogs >= 1)
         {
             logsactive = true; 
             armanimator.SetBool("wood", true);
             Axe.SetActive(false);
+        }        if (collectedlogs >= 2)
+        {
+            logsactive2 = true; 
+        }        if (collectedlogs >= 3)
+        {
+            logsactive3 = true; 
         }
 
 
